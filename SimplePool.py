@@ -142,7 +142,7 @@ def write_database_address_ip(postgresql_pool, number, addr_recv):
         
         # запись данных в бд address_ip
         #insert_query = f"UPDATE address_ip SET ip_address='{addr_recv[0]}', port_address='{addr_recv[1]}', time_create=NOW() WHERE number={number}"
-        insert_query = f"INSERT INTO address_ip(number, ip_address, port_address, time_create) VALUES ({number}, {addr_recv[0]}, {addr_recv[1]}, NOW())"
+        insert_query = f"INSERT INTO address_ip(number, ip_address, port_address, time_create) VALUES ({number}, '{addr_recv[0]}', {addr_recv[1]}, NOW())"
 
         cursor.execute(insert_query)
         connection.commit()
