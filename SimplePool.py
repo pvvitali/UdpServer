@@ -84,8 +84,7 @@ def create_database_list_addressip(postgresql_pool):
             number BIGINT REFERENCES list_st(number),
             ip_address VARCHAR(50),
             port_address INTEGER,
-            time_create TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-            UNIQUE(number)
+            time_create TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
         ); '''
         cursor.execute(create_table_query)
         connection.commit()
