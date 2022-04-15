@@ -11,7 +11,7 @@ addr = (host, port)
 bufferSize = 1024
 
 list_stations = []  #список станций
-old_addr_recv = ['0.0.0.0', 0]     #список значений ip и порта, полученных ранее в пакете от станции
+old_addr_recv = {}     #список значений ip и порта, полученных ранее в пакете от станции
 
 
 try:
@@ -46,11 +46,13 @@ try:
         if number not in list_stations:
             add_new_station(postgresql_pool, number)    #add new station to database
             list_stations.append(number)                #add new station to list
+            #
+            old_addr_recv[number] = ['0', 0]    #add new address to dict
         write_database_st(postgresql_pool, number, u, i, p1, p2)
-        if addr_recv[0] != old_addr_recv[0] and addr_recv[1] != old_addr_recv[1] :
+        if addr_recv[0] != old_addr_recv[number][0] and addr_recv[1] != old_addr_recv[number][1] :
             write_database_address_ip(postgresql_pool, number, addr_recv)
-            old_addr_recv[0] = addr_recv[0]
-            old_addr_recv[1] = addr_recv[1]
+            old_addr_recv[number][0] = addr_recv[0]
+            old_addr_recv[number][1] = addr_recv[1]
         
         
 
