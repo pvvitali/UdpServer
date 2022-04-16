@@ -1,9 +1,11 @@
 import psycopg2
+from psycopg2 import Error
+from psycopg2 import pool
 
 
 def create_pool():
     try:
-        postgresql_pool = psycopg2.pool.SimpleConnectionPool(1,20,
+        postgresql_pool = pool.SimpleConnectionPool(1,20,
             host='127.0.0.1',
             port='5432',
             user='vitali',
