@@ -153,3 +153,4 @@ def write_database_address_ip(postgresql_pool, number, addr_recv):
             #----putconn() puts connection to pool
             cursor.close()
             postgresql_pool.putconn(connection)
+
